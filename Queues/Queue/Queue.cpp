@@ -7,7 +7,7 @@ int main(){
 	MyQueue.enqueue(52);
 	MyQueue.enqueue(14);
 	MyQueue.enqueue(88);
-	std::cout<<"Êîë-âî ýëåìåíòîâ â î÷åðåäè: "<<MyQueue.count()<<std::endl;
-	std::cout<<"Ýëåìåíò "<<MyQueue.dequeue()<<" óäàë¸í èç î÷åðåäè"<<std::endl; 
-	std::cout<<"Ýëåìåíò "<<MyQueue.peek()<<" ïåðâûé â î÷åðåäè"<<std::endl; 
+	std::cout<<"ÐšÐ¾Ð»-Ð²Ð¾ ÑÐ»ÐµÐ¼ÐµÐ½Ñ‚Ð¾Ð² Ð² Ð¾Ñ‡ÐµÑ€ÐµÐ´Ð¸: "<<MyQueue.count()<<std::endl;
+	std::cout<<"Ð­Ð»ÐµÐ¼ÐµÐ½Ñ‚ "<<MyQueue.dequeue()<<" ÑƒÐ´Ð°Ð»Ñ‘Ð½ Ð¸Ð· Ð¾Ñ‡ÐµÑ€ÐµÐ´Ð¸"<<std::endl; 
+	std::cout<<"Ð­Ð»ÐµÐ¼ÐµÐ½Ñ‚ "<<MyQueue.peek()<<" Ð¿ÐµÑ€Ð²Ñ‹Ð¹ Ð² Ð¾Ñ‡ÐµÑ€ÐµÐ´Ð¸"<<std::endl; 
 }
