@@ -7,10 +7,10 @@ int main(){
 	MyDeque.EnqueueFirst(52);
 	MyDeque.EnqueueLast(42);
 	MyDeque.EnqueueLast(32);
-	std::cout<<"Ïåðâûé ýëåìåíò î÷åðåäè: "<<MyDeque.PeekFirst()<<std::endl;
-	std::cout<<"Ïîñëåäíèé ýëåìåíò î÷åðåäè: "<<MyDeque.PeekLast()<<std::endl;
+	std::cout<<"ÐŸÐµÑ€Ð²Ñ‹Ð¹ ÑÐ»ÐµÐ¼ÐµÐ½Ñ‚ Ð¾Ñ‡ÐµÑ€ÐµÐ´Ð¸: "<<MyDeque.PeekFirst()<<std::endl;
+	std::cout<<"ÐŸÐ¾ÑÐ»ÐµÐ´Ð½Ð¸Ð¹ ÑÐ»ÐµÐ¼ÐµÐ½Ñ‚ Ð¾Ñ‡ÐµÑ€ÐµÐ´Ð¸: "<<MyDeque.PeekLast()<<std::endl;
 	MyDeque.EnqueueFirst(35);
 	MyDeque.EnqueueLast(55);
-	std::cout<<"Íîâûé ïåðâûé ýëåìåíò î÷åðåäè: "<<MyDeque.PeekFirst()<<std::endl;
-	std::cout<<"Íîâûé ïîñëåäíèé ýëåìåíò î÷åðåäè: "<<MyDeque.PeekLast()<<std::endl;
+	std::cout<<"ÐÐ¾Ð²Ñ‹Ð¹ Ð¿ÐµÑ€Ð²Ñ‹Ð¹ ÑÐ»ÐµÐ¼ÐµÐ½Ñ‚ Ð¾Ñ‡ÐµÑ€ÐµÐ´Ð¸: "<<MyDeque.PeekFirst()<<std::endl;
+	std::cout<<"ÐÐ¾Ð²Ñ‹Ð¹ Ð¿Ð¾ÑÐ»ÐµÐ´Ð½Ð¸Ð¹ ÑÐ»ÐµÐ¼ÐµÐ½Ñ‚ Ð¾Ñ‡ÐµÑ€ÐµÐ´Ð¸: "<<MyDeque.PeekLast()<<std::endl;
 }
