@@ -20,8 +20,8 @@ void copyArray(int source[], int new_arr[], int size) {
 }
 
 int main() {
-	system("chcp 1251");
-	system("cls");
+    system("chcp 1251");
+    system("cls");
 	
     int smallSize = 3000;
     int largeSize = 50000;
@@ -40,28 +40,26 @@ int main() {
     selectionSort(smallCopy, smallSize);
     auto stop = high_resolution_clock::now();
     duration<double, milli> duration = stop - start;
-    cout << "Ñîðòèðîâêà âûáîðîì (ìàëåíüêèé ìàññèâ): " << duration.count() << " ìñ" << endl;
+    cout << "Ð¡Ð¾Ñ€Ñ‚Ð¸Ñ€Ð¾Ð²ÐºÐ° Ð²Ñ‹Ð±Ð¾Ñ€Ð¾Ð¼ (Ð¼Ð°Ð»ÐµÐ½ÑŒÐºÐ¸Ð¹ Ð¼Ð°ÑÑÐ¸Ð²): " << duration.count() << " Ð¼Ñ" << endl;
     
     copyArray(smallArray, smallCopy, smallSize);
     start = high_resolution_clock::now();
     bubbleSort(smallCopy, smallSize);
     stop = high_resolution_clock::now();
     duration = stop - start;
-    cout << "Ïóçûðüêîâàÿ ñîðòèðîâêà (ìàëåíüêèé ìàññèâ): " << duration.count() << " ìñ" << endl;
+    cout << "ÐŸÑƒÐ·Ñ‹Ñ€ÑŒÐºÐ¾Ð²Ð°Ñ ÑÐ¾Ñ€Ñ‚Ð¸Ñ€Ð¾Ð²ÐºÐ° (Ð¼Ð°Ð»ÐµÐ½ÑŒÐºÐ¸Ð¹ Ð¼Ð°ÑÑÐ¸Ð²): " << duration.count() << " Ð¼Ñ" << endl;
     
     copyArray(largeArray, largeCopy, largeSize);
     start = high_resolution_clock::now();
     selectionSort(largeCopy, largeSize);
     stop = high_resolution_clock::now();
     duration = stop - start;
-    cout << "Ñîðòèðîâêà âûáîðîì (áîëüøîé ìàññèâ): " << duration.count() << " ìñ" << endl;
+    cout << "Ð¡Ð¾Ñ€Ñ‚Ð¸Ñ€Ð¾Ð²ÐºÐ° Ð²Ñ‹Ð±Ð¾Ñ€Ð¾Ð¼ (Ð±Ð¾Ð»ÑŒÑˆÐ¾Ð¹ Ð¼Ð°ÑÑÐ¸Ð²): " << duration.count() << " Ð¼Ñ" << endl;
     
     copyArray(largeArray, largeCopy, largeSize);
     start = high_resolution_clock::now();
     bubbleSort(largeCopy, largeSize);
     stop = high_resolution_clock::now();
     duration = stop - start;
-    cout << "Ïóçûðüêîâàÿ ñîðòèðîâêà (áîëüøîé ìàññèâ): " << duration.count() << " ìñ" << endl;
-    
-    return 0;
+    cout << "ÐŸÑƒÐ·Ñ‹Ñ€ÑŒÐºÐ¾Ð²Ð°Ñ ÑÐ¾Ñ€Ñ‚Ð¸Ñ€Ð¾Ð²ÐºÐ° (Ð±Ð¾Ð»ÑŒÑˆÐ¾Ð¹ Ð¼Ð°ÑÑÐ¸Ð²): " << duration.count() << " Ð¼Ñ" << endl;
 }
