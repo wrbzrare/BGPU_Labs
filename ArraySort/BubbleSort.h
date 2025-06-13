@@ -10,7 +10,7 @@ void bubbleSort(int arr[], int size) {
             }
         }
         if (!swapped) {
-		    break;
-		}
+	    break;
+	}
     }
 }
