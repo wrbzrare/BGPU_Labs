@@ -11,15 +11,15 @@ private:
 public:
     Deque(int capacity) {
     	/*
-		Конструктор класса Двусторонняя Очередь
+	Конструктор класса Двусторонняя Очередь
 		
-		:param capacity - Максимальный размер очереди
-		:param data - Все элементы очереди
-		:param size - Текущий размер очереди
+	:param capacity - Максимальный размер очереди
+	:param data - Все элементы очереди
+	:param size - Текущий размер очереди
 		
-		Пример:
-		>>> Deque MyDeque(5);
-		*/
+	Пример:
+	>>> Deque MyDeque(5);
+	*/
         this->capacity = capacity;
         this->data = new int[capacity];
         this->size = 0;
@@ -27,13 +27,13 @@ public:
 
     ~Deque() {
     	/*
-		Деструктор класса Очередь
-		*/
+	Деструктор класса Очередь
+	*/
         delete[] data;
     }
 
     void EnqueueFirst(int item);
-    /*
+	/*
 	Добавление нового элемента в начало очереди
 	
 	:param item - Значение добавляемого элемента
@@ -43,7 +43,7 @@ public:
 	*/
 	
 	void EnqueueLast(int item);
-    /*
+	/*
 	Добавление нового элемента в конец очереди
 	
 	:param item - Значение добавляемого элемента
