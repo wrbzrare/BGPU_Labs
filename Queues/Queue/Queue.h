@@ -14,16 +14,16 @@ private:
 public:
     Queue(int capacity) {
     	/*
-		Конструктор класса Очередь
-		:param capacity - Максимальный размер очереди
-		:param data - Все элементы очереди
-		:param size - Текущий размер очереди
-		:param rear - Индекс задней части очереди
-		:param front - Индекс передней части очереди
+	Конструктор класса Очередь
+	:param capacity - Максимальный размер очереди
+	:param data - Все элементы очереди
+	:param size - Текущий размер очереди
+	:param rear - Индекс задней части очереди
+	:param front - Индекс передней части очереди
 		
-		Пример:
-		>>> Queue MyQueue(5);
-		*/
+	Пример:
+	>>> Queue MyQueue(5);
+	*/
         this->capacity = capacity;
         this->data = new int[capacity];
         this->front = 0;
@@ -33,14 +33,14 @@ public:
 
     ~Queue() {
     	/*
-		Деструктор класса Очередь
-		*/
+	Деструктор класса Очередь
+	*/
         delete[] data;
     }
 
     void enqueue(int item);
-    /*
-	Добавление нового элемента в очередь
+	/*
+ 	Добавление нового элемента в очередь
 	
 	:param item - Значение добавляемого элемента
 	
