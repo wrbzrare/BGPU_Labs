@@ -1,93 +1,116 @@
 #include <iostream>
+#include <vector>
 
 class BinaryTree {
     /*
-	Базовый класс Двоичное Дерево
+    РљР»Р°СЃСЃ Р”РІРѕРёС‡РЅРѕРµ Р”РµСЂРµРІРѕ РџРѕРёСЃРєР° (BinaryTree)
+
+    РџРѕРґРґРµСЂР¶РёРІР°РµС‚ РґРѕР±Р°РІР»РµРЅРёРµ, СѓРґР°Р»РµРЅРёРµ, РїСЂРѕРІРµСЂРєСѓ РЅР°Р»РёС‡РёСЏ СЌР»РµРјРµРЅС‚Р°,
+    РѕС‡РёСЃС‚РєСѓ РґРµСЂРµРІР°, РїРѕРґСЃС‡С‘С‚ СЌР»РµРјРµРЅС‚РѕРІ Рё РѕР±С…РѕРґС‹ (РїСЂСЏРјРѕР№, СЃРёРјРјРµС‚СЂРёС‡РЅС‹Р№, РѕР±СЂР°С‚РЅС‹Р№).
     */
+
 private:
     struct Node {
         int value;
         Node* left;
         Node* right;
-
-        Node(int val) {
-            value = val;
-            left = nullptr;
-            right = nullptr;
-        }
+        Node(int val) : value(val), left(nullptr), right(nullptr) {}
     };
 
     Node* root;
     int count;
 
+    // Р’СЃРїРѕРјРѕРіР°С‚РµР»СЊРЅС‹Рµ С„СѓРЅРєС†РёРё
     Node* Add(Node* node, int value);
     Node* Remove(Node* node, int value);
     bool Contains(Node* node, int value);
     void Clear(Node* node);
-    void Inorder(Node* node);
-    void Preorder(Node* node);
-    void Postorder(Node* node);
+    void Inorder(Node* node, std::vector<int>& result);
+    void Preorder(Node* node, std::vector<int>& result);
+    void Postorder(Node* node, std::vector<int>& result);
 
 public:
-    BinaryTree() {
-        /*
-        Конструктор класса BinaryTree
+    BinaryTree();                     // РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ
+    ~BinaryTree();                    // Р”РµСЃС‚СЂСѓРєС‚РѕСЂ
 
-        Пример:
-        >>> BinaryTree myTree;
-        */
-        root = nullptr;
-        count = 0;
-    }
+    void Add(int value);             // Р”РѕР±Р°РІР»РµРЅРёРµ СЌР»РµРјРµРЅС‚Р°
+    void Remove(int value);          // РЈРґР°Р»РµРЅРёРµ СЌР»РµРјРµРЅС‚Р°
+    bool Contains(int value);        // РџСЂРѕРІРµСЂРєР° РЅР°Р»РёС‡РёСЏ
+    void Clear();                    // РћС‡РёСЃС‚РєР° РґРµСЂРµРІР°
+    int Count();                     // РљРѕР»РёС‡РµСЃС‚РІРѕ СЌР»РµРјРµРЅС‚РѕРІ
 
-    void Add(int value);
-    void Remove(int value);
-    bool Contains(int value);
-    void Clear();
-    int Count();
-
-    void Inorder();  
-    void Preorder();    
-    void Postorder();  
-
-    void GetEnumerator();
+    std::vector<int> Inorder();      // РЎРёРјРјРµС‚СЂРёС‡РЅС‹Р№ РѕР±С…РѕРґ
+    std::vector<int> Preorder();     // РџСЂСЏРјРѕР№ РѕР±С…РѕРґ
+    std::vector<int> Postorder();    // РћР±СЂР°С‚РЅС‹Р№ РѕР±С…РѕРґ
+    std::vector<int> GetEnumerator(); // Р’РѕР·РІСЂР°С‰Р°РµС‚ РІСЃРµ СЌР»РµРјРµРЅС‚С‹ РґРµСЂРµРІР° (Inorder)
 };
+BinaryTree::BinaryTree() {
+    root = nullptr;
+    count = 0;
+}
 
-// Вспомогательная рекурсивная вставка
-BinaryTree::Node* BinaryTree::Add(Node* node, int value) {
-    if (node == nullptr) {
-        count++;
-        return new Node(value);
-    }
-    if (value < node->value)
-        node->left = Add(node->left, value);
-    else if (value > node->value)
-        node->right = Add(node->right, value);
-    return node;
+BinaryTree::~BinaryTree() {
+    Clear();
 }
 
 void BinaryTree::Add(int value) {
     root = Add(root, value);
+    count++;
 }
 
-// Вспомогательная рекурсивная проверка
-bool BinaryTree::Contains(Node* node, int value) {
-    if (node == nullptr) return false;
-    if (node->value == value) return true;
-    if (value < node->value) return Contains(node->left, value);
-    return Contains(node->right, value);
+BinaryTree::Node* BinaryTree::Add(Node* node, int value) {
+    if (!node) return new Node(value);
+    if (value < node->value)
+        node->left = Add(node->left, value);
+    else
+        node->right = Add(node->right, value);
+    return node;
+}
+
+void BinaryTree::Remove(int value) {
+    if (Contains(value)) {
+        root = Remove(root, value);
+        count--;
+    }
+}
+
+BinaryTree::Node* BinaryTree::Remove(Node* node, int value) {
+    if (!node) return nullptr;
+    if (value < node->value) {
+        node->left = Remove(node->left, value);
+    } else if (value > node->value) {
+        node->right = Remove(node->right, value);
+    } else {
+        if (!node->left) {
+            Node* temp = node->right;
+            delete node;
+            return temp;
+        } else if (!node->right) {
+            Node* temp = node->left;
+            delete node;
+            return temp;
+        } else {
+            Node* successor = node->right;
+            while (successor->left)
+                successor = successor->left;
+            node->value = successor->value;
+            node->right = Remove(node->right, successor->value);
+        }
+    }
+    return node;
 }
 
 bool BinaryTree::Contains(int value) {
     return Contains(root, value);
 }
 
-// Вспомогательная рекурсивная очистка
-void BinaryTree::Clear(Node* node) {
-    if (node == nullptr) return;
-    Clear(node->left);
-    Clear(node->right);
-    delete node;
+bool BinaryTree::Contains(Node* node, int value) {
+    if (!node) return false;
+    if (value == node->value) return true;
+    if (value < node->value)
+        return Contains(node->left, value);
+    else
+        return Contains(node->right, value);
 }
 
 void BinaryTree::Clear() {
@@ -96,95 +119,57 @@ void BinaryTree::Clear() {
     count = 0;
 }
 
+void BinaryTree::Clear(Node* node) {
+    if (!node) return;
+    Clear(node->left);
+    Clear(node->right);
+    delete node;
+}
+
 int BinaryTree::Count() {
     return count;
 }
 
-// Вспомогательная функция для удаления
-BinaryTree::Node* BinaryTree::Remove(Node* node, int value) {
-    if (node == nullptr) return nullptr;
-
-    if (value < node->value) {
-        node->left = Remove(node->left, value);
-    } else if (value > node->value) {
-        node->right = Remove(node->right, value);
-    } else {
-        // найден узел
-        if (node->left == nullptr && node->right == nullptr) {
-            delete node;
-            count--;
-            return nullptr;
-        } else if (node->left == nullptr) {
-            Node* temp = node->right;
-            delete node;
-            count--;
-            return temp;
-        } else if (node->right == nullptr) {
-            Node* temp = node->left;
-            delete node;
-            count--;
-            return temp;
-        } else {
-            // два потомка: ищем минимальный в правом поддереве
-            Node* minNode = node->right;
-            while (minNode->left != nullptr)
-                minNode = minNode->left;
-            node->value = minNode->value;
-            node->right = Remove(node->right, minNode->value);
-        }
-    }
-
-    return node;
+std::vector<int> BinaryTree::Inorder() {
+    std::vector<int> result;
+    Inorder(root, result);
+    return result;
 }
 
-void BinaryTree::Remove(int value) {
-    root = Remove(root, value);
+void BinaryTree::Inorder(Node* node, std::vector<int>& result) {
+    if (!node) return;
+    Inorder(node->left, result);
+    result.push_back(node->value);
+    Inorder(node->right, result);
 }
 
-// Симметричный обход
-void BinaryTree::Inorder(Node* node) {
-    if (node == nullptr) return;
-    Inorder(node->left);
-    std::cout << node->value << " ";
-    Inorder(node->right);
+std::vector<int> BinaryTree::Preorder() {
+    std::vector<int> result;
+    Preorder(root, result);
+    return result;
 }
 
-void BinaryTree::Inorder() {
-    Inorder(root);
-    std::cout << "\n";
+void BinaryTree::Preorder(Node* node, std::vector<int>& result) {
+    if (!node) return;
+    result.push_back(node->value);
+    Preorder(node->left, result);
+    Preorder(node->right, result);
 }
 
-// Прямой обход
-void BinaryTree::Preorder(Node* node) {
-    if (node == nullptr) return;
-    std::cout << node->value << " ";
-    Preorder(node->left);
-    Preorder(node->right);
+std::vector<int> BinaryTree::Postorder() {
+    std::vector<int> result;
+    Postorder(root, result);
+    return result;
 }
 
-void BinaryTree::Preorder() {
-    Preorder(root);
-    std::cout << "\n";
+void BinaryTree::Postorder(Node* node, std::vector<int>& result) {
+    if (!node) return;
+    Postorder(node->left, result);
+    Postorder(node->right, result);
+    result.push_back(node->value);
 }
 
-// Обратный обход
-void BinaryTree::Postorder(Node* node) {
-    if (node == nullptr) return;
-    Postorder(node->left);
-    Postorder(node->right);
-    std::cout << node->value << " ";
+std::vector<int> BinaryTree::GetEnumerator() {
+    // Р’РѕР·РІСЂР°С‰Р°РµС‚ СЌР»РµРјРµРЅС‚С‹ РІ СЃРёРјРјРµС‚СЂРёС‡РЅРѕРј РїРѕСЂСЏРґРєРµ
+    return Inorder();
 }
-
-void BinaryTree::Postorder() {
-    Postorder(root);
-    std::cout << "\n";
-}
-
-// GetEnumerator — просто вызывает Inorder
-void BinaryTree::GetEnumerator() {
-    /*
-    Метод GetEnumerator — выводит все элементы дерева в симметричном порядке
-    */
-    Inorder();
-}
-
