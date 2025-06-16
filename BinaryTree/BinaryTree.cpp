@@ -1,35 +1,28 @@
 #include "BinaryTree.h"
 
 int main() {
-	system("chcp 1251");
-    system("cls");
-    
+    system("chcp 1251");
+    system("cls")
+
     BinaryTree tree;
 
-    tree.Add(10);
     tree.Add(5);
-    tree.Add(15);
     tree.Add(3);
+    tree.Add(8);
+    tree.Add(4);
 
-    std::cout << "Содержит 5? " << (tree.Contains(5) ? "Да" : "Нет") << "\n";
+    std::cout << "РЎРѕРґРµСЂР¶РёС‚ 4? " << (tree.Contains(4) ? "Р”Р°" : "РќРµС‚") << "\n";
+    std::cout << "Р­Р»РµРјРµРЅС‚РѕРІ РІ РґРµСЂРµРІРµ: " << tree.Count() << "\n";
 
-    std::cout << "Симметричный обход (Inorder): ";
-    tree.Inorder();
+    std::cout << "Inorder: ";
+    for (int v : tree.Inorder()) std::cout << v << " ";
+    std::cout << "\n";
 
-    std::cout << "Прямой обход (Preorder): ";
-    tree.Preorder();
-
-    std::cout << "Обратный обход (Postorder): ";
-    tree.Postorder();
-
-    tree.Remove(5);
-    std::cout << "После удаления 5: ";
-    tree.Inorder();
-
-    std::cout << "Всего элементов: " << tree.Count() << "\n";
+    tree.Remove(3);
+    std::cout << "РџРѕСЃР»Рµ СѓРґР°Р»РµРЅРёСЏ 3, Count = " << tree.Count() << "\n";
 
     tree.Clear();
-    std::cout << "Дерево очищено. Элементов: " << tree.Count() << "\n";
+    std::cout << "РџРѕСЃР»Рµ Clear, Count = " << tree.Count() << "\n";
 
+    return 0;
 }
-
