@@ -1,35 +1,33 @@
 #include "List.h"
 
 int main() {
-	system("chcp 1251");
-	system("cls");
+    system("chcp 1251");
+    system("cls");
 	
     List myList;
 
     myList.add(5);
     myList.add(10);
-    std::cout << "Ðàçìåð: " << myList.size() << "\n"; // 2
+    std::cout << "Ð Ð°Ð·Ð¼ÐµÑ€: " << myList.size() << "\n"; // 2
 
-    if (myList.contains(10))
-        std::cout << "Ñïèñîê ñîäåðæèò 10 \n";
+    if (myList.contains(10)){
+        std::cout << "Ð¡Ð¿Ð¸ÑÐ¾Ðº ÑÐ¾Ð´ÐµÑ€Ð¶Ð¸Ñ‚ 10 \n";
+    }
 
     int val = myList.get(1);
-    std::cout << "Ýëåìåíò ïîä èíäåêñîì 1: " << val << "\n";
+    std::cout << "Ð­Ð»ÐµÐ¼ÐµÐ½Ñ‚ Ð¿Ð¾Ð´ Ð¸Ð½Ð´ÐµÐºÑÐ¾Ð¼ 1: " << val << "\n";
 
     myList.set(0, 7);
-    std::cout << "Ýëåìåíò ïîä èíäåêñîì 0 ïîñëå set: " << myList.get(0) << "\n";
+    std::cout << "Ð­Ð»ÐµÐ¼ÐµÐ½Ñ‚ Ð¿Ð¾Ð´ Ð¸Ð½Ð´ÐµÐºÑÐ¾Ð¼ 0 Ð¿Ð¾ÑÐ»Ðµ set: " << myList.get(0) << "\n";
 
     myList.remove(10);
-    std::cout << "Ðàçìåð ïîñëå óäàëåíèÿ: " << myList.size() << "\n";
+    std::cout << "Ð Ð°Ð·Ð¼ÐµÑ€ Ð¿Ð¾ÑÐ»Ðµ ÑƒÐ´Ð°Ð»ÐµÐ½Ð¸Ñ: " << myList.size() << "\n";
 
     List* cloned = myList.clone();
-    std::cout << "Ðàçìåð êëîíà: " << cloned->size() << "\n";
+    std::cout << "Ð Ð°Ð·Ð¼ÐµÑ€ ÐºÐ»Ð¾Ð½Ð°: " << cloned->size() << "\n";
 
     delete cloned;
 
     myList.clear();
-    std::cout << "Ïóñòîé ëè ñïèñîê? " << (myList.isEmpty() ? "Äà" : "Íåò") << "\n";
-
-    return 0;
+    std::cout << "ÐŸÑƒÑÑ‚Ð¾Ð¹ Ð»Ð¸ ÑÐ¿Ð¸ÑÐ¾Ðº? " << (myList.isEmpty() ? "Ð”Ð°" : "ÐÐµÑ‚") << "\n";
 }
-
